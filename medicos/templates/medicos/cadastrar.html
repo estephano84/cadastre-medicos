@@ -1,0 +1,15 @@
+{% extends 'medicos/base.html' %}
+
+{% block title %}Cadastrar Médico{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Cadastrar Médico</h2>
+
+    <form method="post" class="formulario">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Salvar</button>
+    </form>
+</div>
+{% endblock %}

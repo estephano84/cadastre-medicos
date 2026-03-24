@@ -1,0 +1,41 @@
+{% extends 'medicos/base.html' %}
+
+{% block title %}Lista de Médicos{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Lista de Médicos</h2>
+
+    {% if medicos %}
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Especialidade</th>
+                    <th>CRM</th>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medico in medicos %}
+                <tr>
+                    <td>{{ medico.nome }}</td>
+                    <td>{{ medico.especialidade }}</td>
+                    <td>{{ medico.crm }}</td>
+                    <td>{{ medico.telefone }}</td>
+                    <td>{{ medico.email }}</td>
+                    <td>
+                        <a href="/editar/{{ medico.id }}/">Editar</a> |
+                        <a href="/excluir/{{ medico.id }}/">Excluir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum médico cadastrado.</p>
+    {% endif %}
+</div>
+{% endblock %}

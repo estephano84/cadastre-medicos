@@ -1,0 +1,109 @@
+from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from .models import Medico
+from .forms import MedicoForm
+
+
+
+def home(request): 
+    return render(request, 'medicos/home.html')
+
+def cadastrar_medico(request):
+    if request.method == 'POST':
+        form = MedicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = MedicoForm()
+
+    return render(request,'medicos/cadastrar.html',{'form': form})
+
+def listar_medicos(request):
+    medicos = Medico.objects.all()
+    return render(request,'medicos/listar.html',{'medicos':medicos})
+
+def editar_medico(request,id):
+    medico = get_object_or_404(Medico, id=id)
+    if request.method == 'POST':
+        form = MedicoForm(request.POST,instance=medico)
+        if form.is_valid():
+            form.save()
+            return redirect('/listar/')
+    else:
+        form = MedicoForm(instance=medico)
+    
+    return render(request,'medicos/editar.html',{'form':form})
+
+def excluir_medico(request, id):
+    medico = get_object_or_404(Medico, id=id)
+
+    if request.method == 'POST':
+        medico.delete()
+        return redirect('/listar/')
+
+    return render(request, 'medicos/excluir.html', {'medico': medico})
+
+def login_usuario(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request,request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect ('/') 
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, 'medicos/login.html',{'form':form})
+
+def logout_usuario(request):
+    logout(request)
+    return redirect ('/')
+
+@login_required
+def cadastrar_medico(request):
+    if request.method == 'POST':
+        form = MedicoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect ('/listar/')
+    else:
+        form = MedicoForm()
+    
+    return render(request,'medicos/cadastrar.html',{'form':form})
+
+@login_required
+def listar_medicos(request):
+    medicos = Medico.objects.all()
+    return render(request, 'medicos/listar.html',{'medicos':medicos})
+
+@login_required
+def editar_medico(request,id):
+    medico = get_object_or_404(Medico, id=id)
+    
+    if request.method == 'POST':
+        form = MedicoForm(request.POST, instance=medico)
+        if form.is_valid():
+             form.save()
+             return redirect('/listar/')
+    else:
+        form = MedicoForm(instance=medico)
+    return render(request, 'medicos/editar.html'),{'form':form}
+
+@login_required
+def excluir_medico(request,id):
+    medico = get_object_or_404(Medico, id=id)
+
+    if request.method == 'POST':
+        medico.delete()
+        return redirect('/listar/')
+    
+    return render(request, 'medicos/excluir.html'), {'medico': medico}
+
+
+
+
+    
