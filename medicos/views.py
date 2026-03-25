@@ -63,7 +63,7 @@ def logout_usuario(request):
     logout(request)
     return redirect ('/')
 
-@login_required
+
 def cadastrar_medico(request):
     if request.method == 'POST':
         form = MedicoForm(request.POST)
@@ -75,12 +75,12 @@ def cadastrar_medico(request):
     
     return render(request,'medicos/cadastrar.html',{'form':form})
 
-@login_required
+
 def listar_medicos(request):
     medicos = Medico.objects.all()
     return render(request, 'medicos/listar.html',{'medicos':medicos})
 
-@login_required
+
 def editar_medico(request,id):
     medico = get_object_or_404(Medico, id=id)
     
@@ -93,7 +93,7 @@ def editar_medico(request,id):
         form = MedicoForm(instance=medico)
     return render(request, 'medicos/editar.html'),{'form':form}
 
-@login_required
+
 def excluir_medico(request,id):
     medico = get_object_or_404(Medico, id=id)
 
