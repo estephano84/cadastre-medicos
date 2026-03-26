@@ -2,22 +2,60 @@ body {
     background-color: #f4f6f4;
     font-family: Arial, sans-serif;
 }
+/* NAVBAR */
 .navbar{
     background-color: #0d6efd;
-    padding:15px;
+    padding:15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: white;
 }
-.container{
-    width: 60%;
-    margin: 50px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
+.navbar a { 
+    color:white;
+    text-decoration: none;
+    margin-left:20px;
+    font-weight:bold;
+
 }
-button{
+.navbar a:hover{
+    text-decoration: underline;
+}
+
+/*CONTAINER PRINCIPAL/
+
+.container{
+    max-width: 900px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    text-align: center;
+}
+/* TITULO */
+.container h1{
+    color: #333;
+}
+/* BOTÕES*/
+button, .btn{
+    padding: 12px 20px;
     background-color: #0d6efd;
     color:white;
     border:none;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.btn-primary { 
+    background-color: #0d6efd;
+    color: white;
+}
+.btn-secondary{
+    background-color: #6c757d;
+    color: white;
+}
+button:hover{
+    opacity: 0.9;
 }
