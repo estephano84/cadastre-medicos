@@ -35,7 +35,7 @@ def editar(request,id):
         medico.telefone = request.POST.get('telefone')
         medico.email = request.POST.get('email')
         medico.save()
-        return redirect('/listar/')
+        return redirect('listar')
     
     return render(request,'medicos/editar.html',{'medico':medico})
 
@@ -76,29 +76,6 @@ def cadastrar_medico(request):
 def listar_medicos(request):
     medicos = Medico.objects.all()
     return render(request, 'medicos/listar.html',{'medicos':medicos})
-
-
-def editar_medico(request,id):
-    medico = get_object_or_404(Medico, id=id)
-    
-    if request.method == 'POST':
-        form = MedicoForm(request.POST, instance=medico)
-        if form.is_valid():
-             form.save()
-             return redirect('/listar/')
-    else:
-        form = MedicoForm(instance=medico)
-    return render(request, 'medicos/editar.html'),{'form':form}
-
-
-def excluir_medico(request,id):
-    medico = get_object_or_404(Medico, id=id)
-
-    if request.method == 'POST':
-        medico.delete()
-        return redirect('/listar/')
-    
-    return render(request, 'medicos/excluir.html'), {'medico': medico}
 
 
 
