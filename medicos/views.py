@@ -36,6 +36,7 @@ def editar(request,id):
         medico.email = request.POST.get('email')
         medico.save()
         return redirect('/listar/')
+    
     return render(request,'medicos/editar.html',{'medico':medico})
 
 def excluir(request, id):
