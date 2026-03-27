@@ -35,14 +35,14 @@ def editar(request,id):
         medico.telefone = request.POST.get('telefone')
         medico.email = request.POST.get('email')
         medico.save()
-        return redirect('/listar/')
+        return redirect('listar')
     
     return render(request,'medicos/editar.html',{'medico':medico})
 
 def excluir(request, id):
     medico = Medico.objects.get(id=id)
     medico.delete()
-    return redirect ('/listar/')
+    return redirect ('listar')
 
 def login_usuario(request):
     if request.method == 'POST':
@@ -66,7 +66,7 @@ def cadastrar_medico(request):
         form = MedicoForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect ('/listar/')
+            return redirect ('listar')
     else:
         form = MedicoForm()
     
