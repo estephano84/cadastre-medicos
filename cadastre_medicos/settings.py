@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-troque-isso-depois'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['cadastre-medicos.onrender.com','127.0.0.1','localhost']
 
