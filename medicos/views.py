@@ -61,21 +61,8 @@ def logout_usuario(request):
     return redirect ('/')
 
 
-def cadastrar_medico(request):
-    if request.method == 'POST':
-        form = MedicoForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect ('listar')
-    else:
-        form = MedicoForm()
-    
-    return render(request,'medicos/cadastrar.html',{'form':form})
 
 
-def listar_medicos(request):
-    medicos = Medico.objects.all()
-    return render(request, 'medicos/listar.html',{'medicos':medicos})
 
 
 
