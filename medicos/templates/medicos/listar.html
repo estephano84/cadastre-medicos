@@ -27,8 +27,8 @@
                     <td>{{ medico.telefone }}</td>
                     <td>{{ medico.email }}</td>
                     <td>
-                        <a href="{% & url 'editar'  medico.id%}">Editar</a> 
-                        <a href="{% & url 'excluir' medico.id%}">Excluir</a>
+                        <a href="{% url 'editar'  medico.id%}">Editar</a> 
+                        <a href="{% url 'excluir' medico.id%}">Excluir</a>
                     </td>
                 </tr>
                 {% endfor %}
