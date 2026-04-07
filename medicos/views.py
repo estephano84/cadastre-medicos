@@ -30,15 +30,14 @@ def editar(request, id):
     medico = get_object_or_404(Medico ,id=id)
     
     if request.method == 'POST':
-        medico.nome = request.POST.get('nome')
-        medico.especialidade = request.POST.get('especialidade')
-        medico.crm = request.POST.get('crm')
-        medico.telefone = request.POST.get('telefone')
-        medico.email = request.POST.get('email')
-        medico.save()
+        form = MedicoForm(request.POST, instance=medico)
+        if form.is_valid():
+            form.save()
         return redirect('listar')
+    else:
+        form = MedicoForm(instance=medico)
     
-    return render(request,'medicos/editar.html',{'medico': medico})
+    return render(request,'medicos/editar.html',{'form': form})
 
 def excluir(request, id):
     medico = get_object_or_404(Medico, id=id)
