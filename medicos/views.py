@@ -24,9 +24,9 @@ def cadastrar_medico(request):
 
 def listar_medicos(request):
     medicos = Medico.objects.all()
-    return render(request,'medicos/listar.html',{'medicos':medicos})
+    return render(request,'medicos/listar.html',{'medicos': medicos})
 
-def editar(request,id):
+def editar(request, id):
     medico = get_object_or_404(Medico ,id=id)
     
     if request.method == 'POST':
@@ -38,7 +38,7 @@ def editar(request,id):
         medico.save()
         return redirect('listar')
     
-    return render(request,'medicos/editar.html',{'medico':medico})
+    return render(request,'medicos/editar.html',{'medico': medico})
 
 def excluir(request, id):
     medico = get_object_or_404(Medico, id=id)
@@ -55,7 +55,7 @@ def login_usuario(request):
     else:
         form = AuthenticationForm()
     
-    return render(request, 'medicos/login.html',{'form':form})
+    return render(request, 'medicos/login.html',{'form': form})
 
 def logout_usuario(request):
     logout(request)
